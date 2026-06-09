@@ -1,0 +1,16 @@
+{
+  "name": "breu",
+  "version": "1.0.0",
+  "description": "Protótipo acadêmico multiplayer 2D top-down com Express, ws e canvas.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/server.test.js"
+  },
+  "dependencies": {
+    "express": "^4.18.3",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {},
+  "license": "MIT"
+}

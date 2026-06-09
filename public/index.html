@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BREU</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section id="hud" class="hud">
+        <div>
+          <h1>BREU</h1>
+          <p id="conexao">Conectando...</p>
+        </div>
+        <div class="stats">
+          <span id="infoJogador">Jogador: -</span>
+          <span id="infoMunicao">Munição: -</span>
+          <span id="infoBandeira">Bandeira: -</span>
+          <span id="infoPlacar">Placar: 0 x 0</span>
+        </div>
+      </section>
+
+      <section id="painelLobby" class="painel-configuracoes" aria-label="Configurações da partida">
+        <div class="resumo-lobby">
+          <strong id="tituloLobby">Lobby</strong>
+          <span id="infoLobby">Aguardando jogadores...</span>
+        </div>
+        <label>
+          Rodadas
+          <input id="configRodadas" type="number" min="1" max="9" value="3" />
+        </label>
+        <label>
+          NPCs
+          <input id="configNpcs" type="number" min="0" max="12" value="5" />
+        </label>
+        <label>
+          Tamanho
+          <select id="configTamanho">
+            <option value="pequeno">Pequeno</option>
+            <option value="medio" selected>Médio</option>
+            <option value="grande">Grande</option>
+          </select>
+        </label>
+        <label>
+          Mapa
+          <select id="configMapa">
+            <option value="classico">Clássico</option>
+            <option value="corredores">Corredores</option>
+            <option value="ilhas">Ilhas</option>
+          </select>
+        </label>
+        <button id="botaoAplicar" type="button">Aplicar</button>
+        <button id="botaoReiniciar" type="button">Reiniciar</button>
+        <button id="botaoPronto" type="button">Pronto</button>
+      </section>
+
+      <button id="botaoTelaCheia" class="botao-tela-cheia" type="button">Tela cheia</button>
+
+      <canvas id="jogo" width="1000" height="650"></canvas>
+
+      <section class="controles-toque" aria-label="Controles para celular">
+        <div id="controleMovimento" class="controle-movimento" aria-label="Movimento">
+          <span id="controleMovimentoPino"></span>
+        </div>
+        <button id="botaoDevagar" class="botao-devagar" type="button">Lento</button>
+        <button id="botaoAtirar" class="botao-atirar" type="button" aria-label="Mirar e atirar">
+          <span id="botaoAtirarPino"></span>
+          <strong>Atirar</strong>
+        </button>
+      </section>
+
+      <section class="aviso-paisagem" aria-label="Aviso de orientação">
+        <strong>Vire o celular</strong>
+        <span>BREU deve ser jogado com a tela na horizontal.</span>
+      </section>
+
+      <section id="rodape" class="footer">
+        <p>WASD para mover. Shift para andar devagar. Mouse para mirar. Clique esquerdo para atirar. No celular, use o joystick e os botões na tela.</p>
+        <p id="infoPartida">Aguardando outro jogador...</p>
+      </section>
+    </main>
+
+    <script src="/audio.js"></script>
+    <script src="/client.js"></script>
+  </body>
+</html>

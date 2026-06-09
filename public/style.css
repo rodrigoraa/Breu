@@ -1,0 +1,466 @@
+:root {
+  color-scheme: dark;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #14171f;
+  color: #f3f4f6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #14171f;
+  overscroll-behavior: none;
+}
+
+.shell {
+  width: min(1100px, 100vw);
+  padding: 16px;
+  position: relative;
+}
+
+.hud,
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  color: #d1d5db;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  letter-spacing: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.stats span {
+  min-width: 128px;
+  padding: 8px 10px;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  background: #1f2937;
+  text-align: center;
+}
+
+.painel-configuracoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+  margin: 12px 0 0;
+  padding: 10px;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  background: #111827;
+}
+
+.resumo-lobby {
+  display: grid;
+  gap: 4px;
+  min-width: 260px;
+  color: #f9fafb;
+}
+
+.resumo-lobby span {
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+.painel-configuracoes label {
+  display: grid;
+  gap: 4px;
+  min-width: 110px;
+  color: #d1d5db;
+  font-size: 13px;
+}
+
+.painel-configuracoes input,
+.painel-configuracoes select,
+.painel-configuracoes button {
+  height: 34px;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  background: #1f2937;
+  color: #f9fafb;
+  font: inherit;
+}
+
+.painel-configuracoes input,
+.painel-configuracoes select {
+  padding: 0 8px;
+}
+
+.painel-configuracoes button {
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.painel-configuracoes button:hover {
+  background: #334155;
+}
+
+.painel-configuracoes button:disabled,
+.painel-configuracoes input:disabled,
+.painel-configuracoes select:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.partida-iniciada #hud,
+.partida-iniciada #painelLobby,
+.partida-iniciada #rodape {
+  display: none;
+}
+
+.partida-iniciada canvas {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.botao-tela-cheia {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 5;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  background: #1f2937;
+  color: #f9fafb;
+  font: inherit;
+  cursor: pointer;
+  opacity: 0.9;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.botao-tela-cheia:hover {
+  background: #334155;
+  opacity: 1;
+}
+
+.shell:fullscreen,
+.shell.modo-tela-cheia {
+  width: 100vw;
+  height: 100vh;
+  padding: 12px;
+  display: grid;
+  place-items: center;
+  background: #14171f;
+}
+
+.shell:fullscreen .botao-tela-cheia,
+.shell.modo-tela-cheia .botao-tela-cheia {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+}
+
+.shell:fullscreen canvas,
+.shell.modo-tela-cheia canvas,
+.partida-iniciada .shell canvas {
+  width: min(100vw - 24px, calc((100vh - 24px) * (1000 / 650)));
+  max-width: none;
+  max-height: calc(100vh - 24px);
+}
+
+.shell.modo-tela-cheia {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 1000 / 650;
+  margin: 14px auto;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  background: #222831;
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+}
+
+.controles-toque {
+  display: none;
+}
+
+.aviso-paisagem {
+  display: none;
+}
+
+.controle-movimento,
+.botao-devagar,
+.botao-atirar {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.controle-movimento {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 6;
+  width: 116px;
+  height: 116px;
+  border: 2px solid rgba(226, 232, 240, 0.38);
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.58);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
+}
+
+.controle-movimento span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(226, 232, 240, 0.82);
+  transform: translate(-50%, -50%);
+}
+
+.botao-devagar,
+.botao-atirar {
+  position: fixed;
+  z-index: 6;
+  border: 1px solid rgba(226, 232, 240, 0.35);
+  border-radius: 50%;
+  background: rgba(31, 41, 55, 0.82);
+  color: #f9fafb;
+  font: 700 13px Arial, Helvetica, sans-serif;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
+}
+
+.botao-devagar {
+  left: 150px;
+  bottom: 34px;
+  width: 72px;
+  height: 72px;
+}
+
+.botao-atirar {
+  right: 22px;
+  bottom: 30px;
+  width: 96px;
+  height: 96px;
+  background: rgba(153, 27, 27, 0.86);
+}
+
+.botao-atirar span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(254, 226, 226, 0.9);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.botao-atirar strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  transform: translateY(44px);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.botao-devagar:active,
+.botao-atirar:active,
+.botao-devagar.ativo,
+.botao-atirar.ativo {
+  filter: brightness(1.25);
+}
+
+#infoPartida {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .hud,
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .stats {
+    justify-content: flex-start;
+  }
+
+  .painel-configuracoes {
+    align-items: stretch;
+  }
+
+  .shell {
+    padding: 10px;
+  }
+
+  .stats span,
+  .painel-configuracoes label {
+    min-width: 100%;
+  }
+
+  .painel-configuracoes button {
+    min-width: 100px;
+  }
+}
+
+@media (pointer: coarse) {
+  .partida-iniciada .controles-toque {
+    display: block;
+  }
+
+  .partida-iniciada .botao-tela-cheia {
+    right: 18px;
+    bottom: 138px;
+  }
+
+  .partida-iniciada canvas,
+  .shell:fullscreen canvas,
+  .shell.modo-tela-cheia canvas {
+    width: 100vw;
+    max-height: 100vh;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+}
+
+@media (pointer: coarse) and (orientation: landscape) {
+  .controle-movimento {
+    left: max(18px, env(safe-area-inset-left));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    width: 132px;
+    height: 132px;
+  }
+
+  .controle-movimento span {
+    width: 54px;
+    height: 54px;
+  }
+
+  .botao-devagar {
+    left: calc(max(18px, env(safe-area-inset-left)) + 148px);
+    bottom: max(24px, env(safe-area-inset-bottom));
+    width: 76px;
+    height: 76px;
+  }
+
+  .botao-atirar {
+    right: max(18px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    width: 132px;
+    height: 132px;
+  }
+
+  .botao-atirar span {
+    width: 52px;
+    height: 52px;
+  }
+
+  .botao-atirar strong {
+    transform: translateY(58px);
+  }
+
+  .partida-iniciada .botao-tela-cheia {
+    right: max(18px, env(safe-area-inset-right));
+    bottom: calc(max(14px, env(safe-area-inset-bottom)) + 146px);
+  }
+}
+
+@media (pointer: coarse) and (orientation: portrait) {
+  .partida-iniciada canvas,
+  .partida-iniciada .controles-toque {
+    visibility: hidden;
+  }
+
+  .partida-iniciada .botao-tela-cheia {
+    z-index: 25;
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .partida-iniciada .aviso-paisagem {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: grid;
+    place-content: center;
+    gap: 10px;
+    padding: 28px;
+    background: #14171f;
+    color: #f9fafb;
+    text-align: center;
+  }
+
+  .aviso-paisagem strong {
+    font-size: 26px;
+  }
+
+  .aviso-paisagem span {
+    color: #cbd5e1;
+    font-size: 16px;
+  }
+}
+
+@media (pointer: coarse) and (max-width: 520px) {
+  .controle-movimento {
+    width: 104px;
+    height: 104px;
+    left: 14px;
+    bottom: 16px;
+  }
+
+  .controle-movimento span {
+    width: 42px;
+    height: 42px;
+  }
+
+  .botao-devagar {
+    left: 124px;
+    bottom: 24px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .botao-atirar {
+    right: 14px;
+    bottom: 22px;
+    width: 84px;
+    height: 84px;
+  }
+
+  .botao-atirar span {
+    width: 34px;
+    height: 34px;
+  }
+
+  .botao-atirar strong {
+    transform: translateY(38px);
+  }
+}
